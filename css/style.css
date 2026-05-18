@@ -1,11 +1,3 @@
-/* Font Customizada */
-@font-face {
-    font-family: 'CustomFont';
-    src: url('../assets/fonts/main_font.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 /* Reset básico */
 * {
     margin: 0;
@@ -13,12 +5,11 @@
     box-sizing: border-box;
 }
 
-body,
-html {
+body, html {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    font-family: 'CustomFont', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 /* Background */
@@ -32,8 +23,7 @@ html {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: -1;
-    /* Para ficar atrás do conteúdo */
+    z-index: -1; /* Para ficar atrás do conteúdo */
 }
 
 /* Container Principal */
@@ -48,13 +38,11 @@ html {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -150px;
-    /* Metade da altura (300/2) */
-    margin-left: -200px;
-    /* Metade da largura (400/2) */
+    margin-top: -150px; /* Metade da altura (300/2) */
+    margin-left: -200px; /* Metade da largura (400/2) */
     width: 400px;
     height: 300px;
-    background-image: url('../assets/ui/pasta-mae-fechada-semFundo.png');
+    background-image: url('../assets/ui/pasta-mae-fechada.jpeg');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -75,7 +63,7 @@ html {
     margin-top: 0;
     margin-left: 0;
     transform: scale(0.4);
-    /* Mantém a imagem fechada */
+    background-image: url('../assets/ui/pasta-aberta.jpeg');
 }
 
 /* Container das Pastas Secundárias */
@@ -89,10 +77,8 @@ html {
     opacity: 0;
     pointer-events: none;
     transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-    margin-top: 50px;
-    /* Inicia um pouco abaixo para o efeito de entrada */
-    z-index: 30;
-    /* Garante que fique acima dos modais e containers para o clique de voltar */
+    margin-top: 50px; /* Inicia um pouco abaixo para o efeito de entrada */
+    z-index: 30; /* Garante que fique acima dos modais e containers para o clique de voltar */
 }
 
 /* Estado Aberto - Pastas Secundárias */
@@ -106,7 +92,7 @@ html {
 .pasta-secundaria {
     width: 200px;
     height: 150px;
-    background-image: url('../assets/ui/pasta-generica-fechadaSemFundo.png');
+    background-image: url('../assets/ui/pasta-generica-fechada.jpeg');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -124,10 +110,10 @@ html {
 .pasta-secundaria h2 {
     color: #fff;
     font-size: 1.2rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
-/* Container Integrantes (Quadro Investigativo) */
+/* Container Integrantes (Layout Cego) */
 .container-integrantes {
     position: absolute;
     top: 0;
@@ -138,7 +124,6 @@ html {
     pointer-events: none;
     transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 5;
-    display: flex;
 }
 
 /* Estado Integrantes-Aberto: Fade-in dos integrantes */
@@ -157,6 +142,8 @@ html {
 }
 
 /* Move o container flex para que o 3º item (Integrantes) fique no topo esquerdo (20px) */
+/* A distância do Integrantes para a esquerda do container é 200(w) + 30(gap) + 200(w) + 30(gap) = 460px */
+/* Como tem scale(0.4), o offset visual é 460 * 0.4 = 184px */
 .container.integrantes-aberto .pastas-secundarias {
     top: 20px;
     left: calc(20px - 184px);
@@ -164,179 +151,51 @@ html {
     transform: translate(0, 0) scale(0.4);
 }
 
-
-
-/* Área Esquerda */
-.area-esquerda {
-    flex: 1.2;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    padding: 80px 20px 80px 350px;
-    /* Área esquerda expandida para empurrar o grid para a direita */
-    align-items: center;
-    justify-items: center;
-    z-index: 2;
-    gap: 0px;
-}
-
-/* Área Direita */
-.area-direita {
-    flex: 1;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 80px;
-    padding-right: 100px;
-    z-index: 2;
-}
-
-/* Cartões dos Integrantes (Estética Polaroid) */
+/* Cartões dos Integrantes (Estética Polaroid Cega) */
 .card-integrante {
-    position: relative;
-    width: 110px;
-    /* Reduzido de 130px */
-    height: 135px;
-    /* Reduzido de 160px */
-    border: 6px solid #fff;
-    border-bottom-width: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    transform: rotate(0deg);
+    position: absolute;
+    width: 130px;
+    height: 160px;
+    border: 8px solid #fff;
+    border-bottom-width: 24px; /* Simula a borda inferior grossa da Polaroid */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transform: translate(-50%, -50%) rotate(var(--rot));
     transition: transform 0.3s ease, z-index 0s;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .card-integrante:hover {
-    transform: scale(1.15);
+    transform: translate(-50%, -50%) scale(1.15) rotate(0deg);
     z-index: 10;
     cursor: pointer;
 }
 
-/* Posicionamento no Grid e Imagens */
-/* Linha 1 */
-.area-esquerda .card-integrante:nth-child(1) {
-    grid-area: 1 / 1;
-    --rot: -4deg;
-    background-image: url('../assets/ui/foto_Integrante1_Gaby.CR2');
-}
-
-.area-esquerda .card-integrante:nth-child(2) {
-    grid-area: 1 / 2;
-    --rot: 5deg;
-    background-image: url('../assets/ui/foto_Giovana.jpeg');
-}
-
-/* Linha 2 */
-.area-esquerda .card-integrante:nth-child(3) {
-    grid-area: 2 / 1;
-    --rot: -2deg;
-    background-image: url('../assets/ui/foto_andrew.jpeg');
-}
-
-.area-esquerda .card-integrante:nth-child(4) {
-    grid-area: 2 / 2;
-    --rot: 3deg;
-    background-image: url('../assets/ui/foto_bruno.jpeg');
-}
-
-/* Linha 3 */
-.area-esquerda .card-integrante:nth-child(5) {
-    grid-area: 3 / 1;
-    --rot: -5deg;
-    background-image: url('../assets/ui/foto_laise.jpeg');
-}
-
-.area-esquerda .card-integrante:nth-child(6) {
-    grid-area: 3 / 2;
-    --rot: 4deg;
-    background-image: url('../assets/ui/foto_milena.jpeg');
-}
-
-.area-esquerda .card-integrante:nth-child(7) {
-    grid-area: 3 / 3;
-    --rot: -3deg;
-    background-image: url('../assets/ui/foto_pedro.jpeg');
-}
-
-/* Card Grupo */
-.card-grupo {
-    position: relative;
-    width: 280px;
-    /* Reduzido de 350px */
-    height: 200px;
-    /* Reduzido de 250px */
-    border: 10px solid #fff;
-    border-bottom-width: 28px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-    background-image: url('../assets/ui/foto_do_time.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    transform: rotate(0deg);
-    margin-left: -500px;
-    margin-top: 90px;
-}
-
-.card-grupo:hover {
-    transform: scale(1.05);
-    z-index: 10;
-    cursor: pointer;
-}
-
-/* Tachinhas */
-.tachinha {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    box-shadow: 2px 5px 4px rgba(0, 0, 0, 0.5), inset -2px -2px 4px rgba(0, 0, 0, 0.3);
-    z-index: 20;
-}
-
-.tachinha::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-}
-
-.tachinha.vermelha {
-    background: radial-gradient(circle at 30% 30%, #ff4d4d, #cc0000);
-}
-
-.tachinha.branca {
-    background: radial-gradient(circle at 30% 30%, #ffffff, #d9d9d9);
-}
-
-.card-grupo .tachinha {
-    top: -15px;
-    width: 18px;
-    height: 18px;
-}
+/* Posições baseadas na imagem de referência (cork board) */
+/* 1. Mid-Left */
+.card-integrante:nth-child(1) { top: 45%; left: 30%; --rot: -4deg; background-color: #ff6b6b; }
+/* 2. Bottom-Left */
+.card-integrante:nth-child(2) { top: 65%; left: 32%; --rot: 5deg; background-color: #4ecdc4; }
+/* 3. Top-Center */
+.card-integrante:nth-child(3) { top: 30%; left: 50%; --rot: -2deg; background-color: #ffe66d; }
+/* 4. Center */
+.card-integrante:nth-child(4) { top: 50%; left: 50%; --rot: 3deg; background-color: #1a535c; }
+/* 5. Bottom-Center */
+.card-integrante:nth-child(5) { top: 75%; left: 48%; --rot: -5deg; background-color: #ff9f1c; }
+/* 6. Top-Right */
+.card-integrante:nth-child(6) { top: 35%; left: 68%; --rot: 4deg; background-color: #c1839f; }
+/* 7. Mid-Right */
+.card-integrante:nth-child(7) { top: 60%; left: 65%; --rot: -3deg; background-color: #2ec4b6; }
 
 /* Modal de Texto (Folha) */
 .modal-folha {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -30%);
-    /* Inicia um pouco abaixo */
+    transform: translate(-50%, -30%); /* Inicia um pouco abaixo */
     width: 600px;
     max-width: 90%;
     height: 85vh;
-    background-image: url('../assets/ui/folha-papel-texto-Sem-fundo.png');
-    background-size: 100% 100%;
-    /* Para preencher tudo, já que é uma textura */
+    background-image: url('../assets/ui/folha-papel-texto.jpeg');
+    background-size: 100% 100%; /* Para preencher tudo, já que é uma textura */
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0;
@@ -344,7 +203,7 @@ html {
     transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 20;
     padding: 60px 50px;
-    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.4));
 }
 
 .modal-folha-content {
@@ -352,6 +211,7 @@ html {
     height: 100%;
     overflow-y: auto;
     color: #222;
+    font-family: 'Georgia', serif;
     font-size: 1.1rem;
     line-height: 1.6;
 }
@@ -360,9 +220,8 @@ html {
 .modal-folha-content::-webkit-scrollbar {
     width: 6px;
 }
-
 .modal-folha-content::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0,0,0,0.2);
     border-radius: 4px;
 }
 
@@ -389,6 +248,5 @@ html {
 .container.sobre-aberto .modal-folha {
     opacity: 1;
     pointer-events: auto;
-    transform: translate(-50%, -50%);
-    /* Animação subindo até o centro */
+    transform: translate(-50%, -50%); /* Animação subindo até o centro */
 }
