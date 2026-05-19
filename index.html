@@ -4,56 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arquivo 180</title>
-    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function() {
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+                || (window.innerWidth <= 768);
+            if (isMobile) {
+                window.location.replace('mobile/index.html');
+            } else {
+                window.location.replace('desktop/index.html');
+            }
+        })();
+    </script>
 </head>
 <body>
-    <!-- Fundo - Placeholder -->
-    <div class="background-placeholder"></div>
-
-    <main class="container">
-        <!-- Pasta Mãe (Arquivo 180) -->
-        <div class="pasta-mae" id="arquivo-180">
-            <div class="pasta-content">
-                <h1>Arquivo 180</h1>
-            </div>
-        </div>
-
-        <!-- Pastas Secundárias -->
-        <div class="pastas-secundarias">
-            <div class="pasta-secundaria" id="pasta-sobre">
-                <h2>Sobre</h2>
-            </div>
-            
-            <div class="pasta-secundaria" id="pasta-material">
-                <h2>Material</h2>
-            </div>
-            
-            <div class="pasta-secundaria" id="pasta-integrantes">
-                <h2>Integrantes</h2>
-            </div>
-        </div>
-
-        <!-- Container Integrantes (Layout Cego) -->
-        <div class="container-integrantes">
-            <div class="card-integrante"></div>
-            <div class="card-integrante"></div>
-            <div class="card-integrante"></div>
-            <div class="card-integrante"></div>
-            <div class="card-integrante"></div>
-            <div class="card-integrante"></div>
-            <div class="card-integrante"></div>
-        </div>
-
-        <!-- Modal Folha (Sobre) -->
-        <div class="modal-folha">
-            <div class="modal-folha-content">
-                <h2>Sobre o Arquivo 180</h2>
-                <p>Aqui ficará todo o conteúdo descritivo sobre o projeto. Você pode colocar parágrafos longos, imagens, e esta folha vai apresentar uma barra de rolagem se o texto for muito grande.</p>
-                <p>Clique novamente na pasta "Sobre" no canto superior esquerdo para fechar.</p>
-            </div>
-        </div>
-    </main>
-
-    <script src="js/main.js"></script>
+    <noscript>
+        <p>Por favor, <a href="desktop/index.html">clique aqui</a> para acessar o site.</p>
+    </noscript>
 </body>
 </html>

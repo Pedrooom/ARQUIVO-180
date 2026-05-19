@@ -1,0 +1,486 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../../assets/fonts/main_font.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    width: 100%;
+    min-height: 100%;
+    font-family: 'CustomFont', sans-serif;
+    overflow-x: hidden;
+}
+
+.background-placeholder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../assets/background/quadro-cortica-base.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+/* Container Principal */
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Pasta Mãe */
+.pasta-mae {
+    width: 250px;
+    height: 180px;
+    background-image: url('../../assets/ui/pasta-mae-fechada-semFundo.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 10;
+}
+
+.container.aberto .pasta-mae {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 100px;
+    height: 72px;
+    z-index: 100;
+}
+
+/* Pastas Secundárias (Menu Vertical) */
+.pastas-secundarias {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: translateY(30px);
+    z-index: 30;
+    padding: 20px;
+}
+
+.container.aberto .pastas-secundarias {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.pasta-secundaria {
+    width: 160px;
+    height: 120px;
+    background-image: url('../../assets/ui/pasta-generica-fechadaSemFundo.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.pasta-secundaria:active {
+    transform: scale(0.95);
+}
+
+.pasta-secundaria h2 {
+    color: #fff;
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+#pasta-sobre {
+    background-image: url('../../assets/ui/Pasta_Sobre.png');
+}
+
+#pasta-material {
+    background-image: url('../../assets/ui/Pasta_Conteudo.png');
+}
+
+#pasta-integrantes {
+    background-image: url('../../assets/ui/Pasta_Equipe.png');
+}
+
+#pasta-videos {
+    background-image: url('../../assets/ui/Pasta_Documentario.png');
+}
+
+#pasta-texto {
+    background-image: url('../../assets/ui/Pasta_Materia.png');
+}
+
+#pasta-podcast {
+    background-image: url('../../assets/ui/Pasta_Podcast.png');
+}
+
+/* === ESTADO: sobre-aberto === */
+.container.sobre-aberto .pasta-mae,
+.container.sobre-aberto #pasta-material,
+.container.sobre-aberto #pasta-integrantes {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container.sobre-aberto .pastas-secundarias {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    transform: none;
+}
+
+.container.sobre-aberto #pasta-sobre {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 100px;
+    height: 72px;
+    z-index: 100;
+}
+
+.container.sobre-aberto .modal-folha {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* === ESTADO: integrantes-aberto === */
+.container.integrantes-aberto .pasta-mae,
+.container.integrantes-aberto #pasta-sobre,
+.container.integrantes-aberto #pasta-material {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container.integrantes-aberto .pastas-secundarias {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    transform: none;
+}
+
+.container.integrantes-aberto #pasta-integrantes {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 100px;
+    height: 72px;
+    z-index: 100;
+}
+
+.container.integrantes-aberto .container-integrantes {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* === ESTADO: material-aberto === */
+.container.material-aberto .pasta-mae,
+.container.material-aberto #pasta-sobre,
+.container.material-aberto #pasta-integrantes {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container.material-aberto .pastas-secundarias {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    transform: none;
+}
+
+.container.material-aberto #pasta-material {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 100px;
+    height: 72px;
+    z-index: 100;
+}
+
+.container.material-aberto .container-material {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Modal Folha (Sobre) */
+.modal-folha {
+    position: fixed;
+    top: 10vh;
+    left: 5vw;
+    width: 90vw;
+    height: 78vh;
+    background-image: url('../../assets/ui/folha-papel-texto-Sem-fundo.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: translateY(30px);
+    z-index: 20;
+    padding: 35px 25px 30px;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+}
+
+.modal-folha-content {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    color: #222;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding: 10px;
+}
+
+.modal-folha-content h2 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.modal-folha-content h3 {
+    font-size: 1rem;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.modal-folha-content p {
+    margin-bottom: 10px;
+}
+
+.modal-folha-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.modal-folha-content::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+/* Container Integrantes */
+.container-integrantes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: translateY(30px);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px 20px;
+}
+
+.carrossel-integrantes {
+    position: relative;
+    width: 90vw;
+    max-width: 340px;
+    height: 65vh;
+    border: none;
+    background: transparent;
+    overflow: hidden;
+}
+
+.carrossel-integrantes::before,
+.carrossel-integrantes::after {
+    display: none;
+}
+
+.carrossel-scroll {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 25px 15px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carrossel-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.carrossel-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(139, 90, 43, 0.5);
+    border-radius: 4px;
+}
+
+.grid-integrantes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center;
+    margin-bottom: 25px;
+}
+
+.card-integrante {
+    position: relative;
+    width: 100px;
+    height: 130px;
+    border: 5px solid #fff;
+    border-bottom-width: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transform: rotate(var(--rot, 0deg));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.nome-integrante {
+    position: absolute;
+    bottom: -14px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #333;
+    font-family: 'CustomFont', sans-serif;
+}
+
+.grid-integrantes .card-integrante:nth-child(1) {
+    --rot: -3deg;
+    background-image: url('../../assets/ui/foto_Integrante1_Gaby.jpeg');
+}
+
+.grid-integrantes .card-integrante:nth-child(2) {
+    --rot: 4deg;
+    background-image: url('../../assets/ui/foto_Giovana.jpeg');
+}
+
+.grid-integrantes .card-integrante:nth-child(3) {
+    --rot: -2deg;
+    background-image: url('../../assets/ui/foto_andrew.jpeg');
+}
+
+.grid-integrantes .card-integrante:nth-child(4) {
+    --rot: 3deg;
+    background-image: url('../../assets/ui/foto_bruno.jpeg');
+}
+
+.grid-integrantes .card-integrante:nth-child(5) {
+    --rot: -4deg;
+    background-image: url('../../assets/ui/foto_laise.jpeg');
+}
+
+.grid-integrantes .card-integrante:nth-child(6) {
+    --rot: 2deg;
+    background-image: url('../../assets/ui/foto_milena.jpeg');
+}
+
+.grid-integrantes .card-integrante:nth-child(7) {
+    --rot: -3deg;
+    background-image: url('../../assets/ui/foto_pedro.jpeg');
+}
+
+.card-grupo {
+    position: relative;
+    width: 85%;
+    max-width: 280px;
+    height: 180px;
+    margin: 0 auto;
+    border: 8px solid #fff;
+    border-bottom-width: 22px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    background-image: url('../../assets/ui/foto_do_time.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: rotate(1deg);
+}
+
+/* Tachinhas */
+.tachinha {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.5), inset -2px -2px 3px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+}
+
+.tachinha::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+}
+
+.tachinha.vermelha {
+    background: radial-gradient(circle at 30% 30%, #ff4d4d, #cc0000);
+}
+
+.tachinha.branca {
+    background: radial-gradient(circle at 30% 30%, #ffffff, #d9d9d9);
+}
+
+.card-grupo .tachinha {
+    top: -12px;
+    width: 14px;
+    height: 14px;
+}
+
+.card-grupo .nome-integrante {
+    bottom: -18px;
+    font-size: 1rem;
+}
+
+/* Container Material */
+.container-material {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: translateY(30px);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pastas-material {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
