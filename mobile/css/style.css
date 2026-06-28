@@ -396,11 +396,6 @@ html {
     background-image: url('../../assets/ui/foto_milena.jpeg');
 }
 
-.grid-integrantes .card-integrante:nth-child(7) {
-    --rot: -3deg;
-    background-image: url('../../assets/ui/foto_pedro.jpeg');
-}
-
 .card-grupo {
     position: relative;
     width: 85%;
