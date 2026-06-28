@@ -431,7 +431,7 @@ html {
 }
 
 /* Mostra a folha de papel no centro */
-.container.sobre-aberto .modal-folha {
+.container.sobre-aberto #modal-sobre {
     opacity: 1;
     pointer-events: auto;
     transform: translate(-50%, -50%);
@@ -488,4 +488,27 @@ html {
 .container.material-aberto .container-material {
     opacity: 1;
     pointer-events: auto;
+}
+
+/* Estado: texto-aberto (nivel 2, dentro de Material) */
+.container.texto-aberto #pasta-videos,
+.container.texto-aberto #pasta-texto,
+.container.texto-aberto #pasta-podcast {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Mostra a folha da matéria no centro */
+.container.texto-aberto #modal-texto {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%);
+}
+
+/* Autoria da matéria */
+.modal-folha-content .modal-autoria {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
 }

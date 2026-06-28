@@ -160,7 +160,7 @@ html {
     z-index: 100;
 }
 
-.container.sobre-aberto .modal-folha {
+.container.sobre-aberto #modal-sobre {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
@@ -478,4 +478,25 @@ html {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+}
+
+/* === ESTADO: texto-aberto === */
+.container.texto-aberto #pasta-videos,
+.container.texto-aberto #pasta-texto,
+.container.texto-aberto #pasta-podcast {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container.texto-aberto #modal-texto {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.modal-folha-content .modal-autoria {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 14px;
+    font-size: 0.85rem;
 }
