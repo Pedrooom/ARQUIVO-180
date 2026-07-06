@@ -308,8 +308,8 @@ html {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transform: rotate(2deg) translateX(-300px);
-    margin-top: -150px;
+    transform: rotate(2deg) translateX(0);
+    margin-top: 0;
 }
 
 .card-grupo:hover {
