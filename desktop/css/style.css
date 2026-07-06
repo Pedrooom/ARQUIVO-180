@@ -207,7 +207,7 @@ html {
     flex: 1.5;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     padding: 20px;
     align-items: center;
     justify-items: center;
@@ -271,36 +271,29 @@ html {
     background-image: url('../../assets/ui/foto_Giovana.jpeg');
 }
 
-/* Linha 2 */
 .area-esquerda .card-integrante:nth-child(3) {
-    grid-area: 2 / 1;
+    grid-area: 1 / 3;
     --rot: -2deg;
     background-image: url('../../assets/ui/foto_andrew.jpeg');
 }
 
+/* Linha 2 */
 .area-esquerda .card-integrante:nth-child(4) {
-    grid-area: 2 / 2;
+    grid-area: 2 / 1;
     --rot: 3deg;
     background-image: url('../../assets/ui/foto_bruno.jpeg');
 }
 
-/* Linha 3 */
 .area-esquerda .card-integrante:nth-child(5) {
-    grid-area: 3 / 1;
+    grid-area: 2 / 2;
     --rot: -5deg;
     background-image: url('../../assets/ui/foto_laise.jpeg');
 }
 
 .area-esquerda .card-integrante:nth-child(6) {
-    grid-area: 3 / 2;
+    grid-area: 2 / 3;
     --rot: 4deg;
     background-image: url('../../assets/ui/foto_milena.jpeg');
-}
-
-.area-esquerda .card-integrante:nth-child(7) {
-    grid-area: 3 / 3;
-    --rot: -3deg;
-    background-image: url('../../assets/ui/foto_pedro.jpeg');
 }
 
 /* Card Grupo */
@@ -437,7 +430,7 @@ html {
 }
 
 /* Mostra a folha de papel no centro */
-.container.sobre-aberto .modal-folha {
+.container.sobre-aberto #modal-sobre {
     opacity: 1;
     pointer-events: auto;
     transform: translate(-50%, -50%);
@@ -494,4 +487,27 @@ html {
 .container.material-aberto .container-material {
     opacity: 1;
     pointer-events: auto;
+}
+
+/* Estado: texto-aberto (nivel 2, dentro de Material) */
+.container.texto-aberto #pasta-videos,
+.container.texto-aberto #pasta-texto,
+.container.texto-aberto #pasta-podcast {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Mostra a folha da matéria no centro */
+.container.texto-aberto #modal-texto {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%);
+}
+
+/* Autoria da matéria */
+.modal-folha-content .modal-autoria {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
 }
