@@ -78,6 +78,66 @@
             </div>
         </div>
 
+        <!-- Documentário: 3 vídeos (estado videos-aberto) -->
+        <div class="container-videos">
+            <div class="videos-grid">
+                <div class="video-card">
+                    <div class="tachinha vermelha"></div>
+                    <button class="video-facade" type="button" data-videoid="PG09kcm-Pv4" aria-label="Reproduzir Episódio 1">
+                        <img class="video-thumb" src="https://i.ytimg.com/vi/PG09kcm-Pv4/hqdefault.jpg" alt="Capa do Episódio 1" loading="lazy">
+                        <span class="video-play" aria-hidden="true"></span>
+                    </button>
+                    <span class="video-titulo"><span class="placeholder">[TÍTULO EP. 1]</span></span>
+                </div>
+                <div class="video-card">
+                    <div class="tachinha branca"></div>
+                    <button class="video-facade" type="button" data-videoid="PG09kcm-Pv4" aria-label="Reproduzir Episódio 2">
+                        <img class="video-thumb" src="https://i.ytimg.com/vi/PG09kcm-Pv4/hqdefault.jpg" alt="Capa do Episódio 2" loading="lazy">
+                        <span class="video-play" aria-hidden="true"></span>
+                    </button>
+                    <span class="video-titulo"><span class="placeholder">[TÍTULO EP. 2]</span></span>
+                </div>
+                <div class="video-card">
+                    <div class="tachinha vermelha"></div>
+                    <button class="video-facade" type="button" data-videoid="PG09kcm-Pv4" aria-label="Reproduzir Episódio 3">
+                        <img class="video-thumb" src="https://i.ytimg.com/vi/PG09kcm-Pv4/hqdefault.jpg" alt="Capa do Episódio 3" loading="lazy">
+                        <span class="video-play" aria-hidden="true"></span>
+                    </button>
+                    <span class="video-titulo"><span class="placeholder">[TÍTULO EP. 3]</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Podcast: 3 episódios (estado podcast-aberto) -->
+        <div class="container-podcast">
+            <div class="podcast-grid">
+                <div class="podcast-card">
+                    <div class="tachinha vermelha"></div>
+                    <button class="podcast-facade" type="button" data-episodeid="2Hn6HkfG6EWyGoflfocVZn" aria-label="Ouvir Episódio 1 do podcast">
+                        <img class="podcast-cover" src="../assets/ui/capa_ep1.jpg" alt="Capa do Episódio 1 do podcast" loading="lazy">
+                        <span class="podcast-play" aria-hidden="true"></span>
+                    </button>
+                    <span class="podcast-titulo"><span class="placeholder">[TÍTULO EP. 1]</span></span>
+                </div>
+                <div class="podcast-card">
+                    <div class="tachinha branca"></div>
+                    <button class="podcast-facade" type="button" data-episodeid="2Hn6HkfG6EWyGoflfocVZn" aria-label="Ouvir Episódio 2 do podcast">
+                        <img class="podcast-cover" src="../assets/ui/capa_ep2.jpg" alt="Capa do Episódio 2 do podcast" loading="lazy">
+                        <span class="podcast-play" aria-hidden="true"></span>
+                    </button>
+                    <span class="podcast-titulo"><span class="placeholder">[TÍTULO EP. 2]</span></span>
+                </div>
+                <div class="podcast-card">
+                    <div class="tachinha vermelha"></div>
+                    <button class="podcast-facade" type="button" data-episodeid="2Hn6HkfG6EWyGoflfocVZn" aria-label="Ouvir Episódio 3 do podcast">
+                        <img class="podcast-cover" src="../assets/ui/capa_ep3.jpg" alt="Capa do Episódio 3 do podcast" loading="lazy">
+                        <span class="podcast-play" aria-hidden="true"></span>
+                    </button>
+                    <span class="podcast-titulo"><span class="placeholder">[TÍTULO EP. 3]</span></span>
+                </div>
+            </div>
+        </div>
+
         <!-- Modal Folha (Matéria - Texto) -->
         <div class="modal-folha" id="modal-texto">
             <div class="modal-folha-content">
@@ -97,6 +157,13 @@
         </div>
     </main>
 
+    <script>
+        // Guarda a API do Spotify quando ela carregar (usada pelo player do podcast)
+        window.onSpotifyIframeApiReady = function (IFrameAPI) {
+            window.SpotifyIframeAPI = IFrameAPI;
+        };
+    </script>
+    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
     <script src="js/main.js"></script>
 </body>
 </html>

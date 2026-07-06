@@ -514,3 +514,279 @@ html {
     margin-bottom: 18px;
     font-size: 0.95rem;
 }
+
+/* Placeholder visível para conteúdo a preencher */
+.placeholder {
+    background: #f5ecd2;
+    color: #7a6a37;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-style: italic;
+}
+
+/* === Documentário: vídeos === */
+.container-videos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 10;
+}
+
+.videos-grid {
+    display: flex;
+    gap: 24px;
+    width: 82%;
+    max-width: 1100px;
+    height: 46vh;
+    margin-top: 14vh; /* um pouco abaixo do centro */
+}
+
+.video-card {
+    flex: 1 1 0;
+    min-width: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: flex 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hover: cresce e comprime os irmãos sem quebrar a linha */
+.video-card:hover,
+.video-card.playing {
+    flex: 2.6 1 0;
+}
+
+.video-facade {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    border: 6px solid #fdfdf7;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+    transition: box-shadow 0.4s ease;
+}
+
+.video-card:hover .video-facade {
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.55);
+}
+
+.video-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(204, 0, 0, 0.9);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.video-play::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    border-width: 12px 0 12px 20px;
+    border-color: transparent transparent transparent #fff;
+}
+
+.video-facade:hover .video-play,
+.video-facade:focus-visible .video-play {
+    transform: translate(-50%, -50%) scale(1.12);
+    background: #cc0000;
+}
+
+.video-titulo {
+    margin-top: 14px;
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* iframe que substitui a facade ao clicar no play */
+.video-card .video-iframe {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    border: 6px solid #fdfdf7;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+    display: block;
+}
+
+/* Estado: videos-aberto (nivel 2, dentro de Material) */
+.container.videos-aberto #pasta-videos,
+.container.videos-aberto #pasta-texto,
+.container.videos-aberto #pasta-podcast {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container.videos-aberto .container-videos {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* === Podcast: episódios === */
+.container-podcast {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 10;
+}
+
+.podcast-grid {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    max-width: 1000px;
+    margin-top: 12vh; /* um pouco abaixo do centro */
+}
+
+.podcast-card {
+    flex: 1 1 0;
+    min-width: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: flex 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hover: cresce e comprime os irmãos */
+.podcast-card:hover,
+.podcast-card.playing {
+    flex: 1.8 1 0;
+}
+
+.podcast-facade {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* capa quadrada inteira visível */
+    border: 6px solid #fdfdf7;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+    transition: box-shadow 0.4s ease;
+}
+
+.podcast-card:hover .podcast-facade {
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.55);
+}
+
+.podcast-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.3s ease;
+}
+
+/* Escurece a capa no hover para o play aparecer */
+.podcast-facade:hover .podcast-cover,
+.podcast-facade:focus-visible .podcast-cover {
+    filter: brightness(0.6);
+}
+
+.podcast-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(204, 0, 0, 0.92);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    opacity: 0; /* aparece só no hover */
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.podcast-play::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    border-width: 12px 0 12px 20px;
+    border-color: transparent transparent transparent #fff;
+}
+
+.podcast-facade:hover .podcast-play,
+.podcast-facade:focus-visible .podcast-play {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.podcast-titulo {
+    margin-top: 14px;
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Player do Spotify que aparece sobre a capa ao clicar */
+.podcast-embed {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+}
+
+.podcast-embed iframe {
+    width: 100%;
+    min-height: 152px;
+    border: 0;
+    display: block;
+}
+
+/* Estado: podcast-aberto (nivel 2, dentro de Material) */
+.container.podcast-aberto #pasta-videos,
+.container.podcast-aberto #pasta-texto,
+.container.podcast-aberto #pasta-podcast {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container.podcast-aberto .container-podcast {
+    opacity: 1;
+    pointer-events: auto;
+}
