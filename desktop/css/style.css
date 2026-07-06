@@ -164,7 +164,10 @@ html {
     transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 5;
     display: flex;
-    padding: 140px 120px 80px 370px;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    padding: 140px 60px 80px 60px;
 }
 
 /* Estado Integrantes-Aberto: Fade-in dos integrantes */
@@ -204,24 +207,24 @@ html {
 
 /* Área Esquerda */
 .area-esquerda {
-    flex: 1.5;
+    flex: 0 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    padding: 20px;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(2, 190px);
+    padding: 0;
     align-items: center;
     justify-items: center;
     z-index: 2;
-    gap: 10px;
+    gap: 22px 18px;
 }
 
 /* Área Direita */
 .area-direita {
-    flex: 1;
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 0;
     z-index: 2;
 }
 
