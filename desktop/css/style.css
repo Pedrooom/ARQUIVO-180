@@ -68,6 +68,56 @@ html {
     z-index: 10;
 }
 
+/* Redes sociais abaixo da pasta-mãe (só na tela inicial) */
+.redes-sociais-mae {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 165px; /* metade da altura da pasta-mae (150) + gap (15) */
+    transform: translateX(-50%);
+    display: flex;
+    gap: 22px;
+    z-index: 10;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.rede-social {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(253, 253, 247, 0.92);
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    text-decoration: none;
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.rede-social svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+.rede-social:hover,
+.rede-social:focus-visible {
+    transform: translateY(-3px) scale(1.08);
+    background: #fff;
+}
+
+.rede-social[aria-label*="Instagram"]:hover { color: #e1306c; }
+.rede-social[aria-label*="YouTube"]:hover { color: #ff0000; }
+.rede-social[aria-label*="Spotify"]:hover { color: #1db954; }
+
+/* Esconde as redes ao iniciar navegação (mesmo comportamento da pasta-mãe grande) */
+.container.aberto .redes-sociais-mae {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(20px);
+}
+
 /* Estado Aberto - Pasta Mãe */
 .container.aberto .pasta-mae {
     top: 20px;

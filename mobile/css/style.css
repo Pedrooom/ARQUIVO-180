@@ -66,6 +66,48 @@ html {
     z-index: 100;
 }
 
+/* Redes sociais abaixo da pasta-mãe (só na tela inicial) */
+.redes-sociais-mae {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.rede-social {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(253, 253, 247, 0.92);
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.rede-social:active {
+    transform: scale(0.92);
+}
+
+.rede-social svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+/* Esconde as redes ao iniciar navegação */
+.container.aberto .redes-sociais-mae {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    position: fixed; /* remove do fluxo pra não ocupar espaço com o menu vertical */
+    left: -9999px;
+}
+
 /* Pastas Secundárias (Menu Vertical) */
 .pastas-secundarias {
     position: absolute;
